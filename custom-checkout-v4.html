@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://culqi.com/assets/images/brand/brand.svg" type="image/x-icon">
+  <title>Document</title>
+  <style>
+    #culqi-container {
+      width: 700px;
+      height: 900px;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!--div class="flex items-center flex-col justify-center w-full "-->
+  <div class="w-full ">
+    <div class="justify-center flex flex-row items-center">
+      <div id="culqi-container"></div>
+      <div id="response"></div>
+    </div>
+    <button class="bg-purple-400 hover:bg- text-white hover:text-red-500 py-2 px-3 rounded-lg" id="btn-open">open modal</button>
+  </div>
+  <!-- Incluyendo Culqi Checkout -->
+  <script src="https://qa-js.culqi.xyz/checkout-js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+const btn = document.querySelector("#btn-open");
+const public_key = "pk_live_c5902910f173e0a6";
+
+const settings = {
+title:"Culqi store 3", 
+currency:"PEN", 
+amount:"7000", 
+order: "ord_live_JZePaG1VpDP7dugP"
+// xculqirsaid:"afb97c6a-a340-4b98-8c14-49dc2c4226bd", 
+// rsapublickey:"-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsMg5a/QvehP3fKdRaGzpN+sa/sKmgmBvNv3VhT1xQ1wNLx586SOXRQKzhfU8+kQc39Fm3/nWPcopCRVDSzJPx6lW0v5ifV6ckKPSVao5VJEmBCmdpmZpRoeFyy0OTeznhISr/f0e3+htz9TLVbAAcTuTE1LKCEuDMGPz4ckRPOQIDAQAB-----END PUBLIC KEY-----" 
+};
+
+const paymentMethods = {
+	cuotealo: true,
+	agente: true,
+	yape: true,
+	billetera: true,
+	bancaMovil: true,
+	tarjeta: true,
+};
+
+const options = {
+  lang: "es", // opcional. Default auto // pt, en, es, auto
+  installments: true, // opcional. Default true
+  modal: true, // opcional. Default true
+//   loadPaymentBydefault: false,
+//   container: "#culqi-container", // opcional
+//   paymentMethods: {tarjeta:true,billetera:true,agente:true,bancaMovil:true,cuotealo:true,yape:true},
+  paymentMethods: paymentMethods,
+paymentMethodsSort: [
+"cuotealo",
+"yape",
+//"billetera",
+//"bancaMovil",
+//"tarjeta",
+//"agente",
+],
+};
+
+const client = {
+  email: "test2@demo.com",
+};
+
+const appearance = {
+	//   theme: "dark", // "default" | "minimal" | "dark"
+	  theme: "default",
+	  hiddenCulqiLogo: false,
+	  hiddenBannerContent: false,
+	  hiddenBanner: false,
+	  hiddenToolBarAmount: false,
+	  menuType: "sliderTop", // default/sidebar / sliderTop / select
+	  buttonCardPayText: "Pagar tal monto", // hexadecimal
+	  logo: null, // 'http://www.childrensociety.ms/wp-content/uploads/2019/11/MCS-Logo-2019-no-text.jpg',
+	  defaultStyle: {
+		// bannerColor: "blue", // hexadecimal
+		// buttonBackground: "yellow", // hexadecimal
+		// menuColor: "pink", // hexadecimal
+		// linksColor: "green", // hexadecimal
+		// buttonTextColor: "blue", // hexadecimal
+		// priceColor: "red",
+	  },
+	//   variables: {
+	// 	fontFamily: "monospace",
+	// 	fontWeightNormal: "500",
+	// 	borderRadius: "8px",
+	// 	colorBackground: "#0A2540",
+	// 	colorPrimary: "#EFC078",
+	// 	colorPrimaryText: "#1A1B25",
+	// 	colorText: "white",
+	// 	colorTextSecondary: "white",
+	// 	colorTextPlaceholder: "#727F96",
+	// 	colorIconTab: "white",
+	// 	colorLogo: "dark",
+	// 	soyUnaVariable: "blue",
+	//   },
+	//   rules: {
+	// 	".Culqi-Main-Container": {
+	// 	  background: "red",
+	// 	  fontFamily: "var(--fontFamily)",
+	// 	},
+	// 	".Culqi-ToolBanner": {
+	// 	  background: "blue",
+	// 	  fontFamily: "var(--fontFamily)",
+	// 	},
+	// 	".Culqi-Toolbar-Price": {
+	// 	  color: "blue",
+	// 	  fontFamily: "var(--fontFamily)",
+	// 	},
+	// 	".Culqi-Toolbar-Price span, .Culqi-Toolbar-Price p, .Culqi-Toolbar-Price path ": {
+	// 	  color: "blue",
+	// 	  fill: "blue",
+	// 	},
+	// 	".Culqi-Menu-Slider-item": {
+	// 	  "border-color": "blue",
+	// 	  color: "white",
+	// 	},
+	// 	".Culqi-Menu-Slider-item.active": {
+	// 	  "border-color": "white",
+	// 	},
+	// 	".Culqi-Menu-Slider-item > svg path": {
+	// 	  fill: "white",
+	// 	},
+	// 	".Culqi-Main-Method": {
+	// 	  background: "orange",
+	// 	  padding: "10px 20px",
+	// 	},
+	// 	".Culqi-Input, .Culqi-Button": {
+	// 	  border: "1px solid red",
+	// 	  color: "var(--soyUnaVariable)",
+	// 	  marginBottom: "20px",
+	// 	},
+	// 	".Culqi-Button": {
+	// 	  background: "red",
+	// 	},
+	// 	".Culqi-Label": {
+	// 	  color: "var(--soyUnaVariable)",
+	// 	  marginBottom: "20px",
+	// 	},
+	// 	".Culqi-Input:focus": {
+	// 	  border: "1px solid green",
+	// 	},
+	// 	".Culqi-Input.input-valid": {
+	// 	  border: "1px solid pink",
+	// 	  background: "black",
+	// 	  color: "var(--colorText)",
+	// 	},
+	// 	".Culqi-Menu": {},
+	// 	".Culqi-Menu-Select": {
+	// 	  border: "4px solid red",
+	// 	},
+	// 	".Culqi-Menu-Slider": {
+	// 	  border: "4px solid red",
+	// 	},
+	// 	".Culqi-Menu-Sidebar": {
+	// 	  border: "4px solid red",
+	// 	},
+	//   },
+	};
+
+const config = {
+  settings,
+  client,
+  options,
+  appearance,
+};
+
+const Culqi = new CulqiCheckout(public_key, config); // checkout | customCheckout
+
+Culqi.initCheckout();
+
+btn.addEventListener("click", () => {
+  Culqi.open();
+});
+
+const handleCulqiAction = () => {
+	let response = document.getElementById('response'); 
+  if (Culqi.token) {
+    const token = Culqi.token.id;
+    response.innerHTML = `${token}`
+    console.log("Se ha creado un Token: ", token);
+  } else if (Culqi.order) {
+    const order = Culqi.order;
+    response.innerHTML = `${JSON.stringify(order)}`
+    console.log("Se ha creado el objeto Order: ", order.id);
+  } else {
+    response.innerHTML = `${JSON.stringify(Culqi.error)}`
+    console.log("Errorrr : ", Culqi.error);
+  }
+};
+
+const handleCloseCheckout = () => {
+  console.log("local....");
+  console.log("obteniedo: ", Culqi.methodValue);
+};
+
+Culqi.closeCheckout = () => handleCloseCheckout();
+Culqi.culqi = handleCulqiAction;
+});
+  </script>
+
+</html>
